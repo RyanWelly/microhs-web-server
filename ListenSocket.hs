@@ -1,18 +1,12 @@
-#line 1 "ListenSocket.hsc"
-module ListenSocket(c_sin) where
+module ListenSocket where
 import Foreign.C.Types 
 
-#line 1 "missing file: math.h"
-#line 5 "ListenSocket.hsc"
-#line 1 "missing file: sys/types.h"
-#line 6 "ListenSocket.hsc"
-#line 1 "missing file: sys/socket.h"
-#line 7 "ListenSocket.hsc"
-
-foreign import ccall "math.h sin" c_sin :: CDouble -> CDouble
 
 
+-- Experimenting with capi. Can import values, even #defined!
+-- foreign import capi "sys/socket.h value SOCK_DGRAM" c_SO_ACCEPTCONN :: CInt
+foreign import capi "sys/socket.h socket"  c_socket :: CInt -> CInt -> CInt -> CInt
 
 
--- main = print (c_sin(5.0))
+main = print $ c_socket 5 6 7 -- ERR: FFI unknown socket
 
